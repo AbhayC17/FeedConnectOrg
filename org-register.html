@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Organisation Registration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Organisation Registration</h2>
+  <form id="orgForm">
+    <input type="text" name="personName" placeholder="Your Name" required><br>
+    <input type="text" name="orgName" placeholder="Organisation Name" required><br>
+    <input type="text" name="orgType" placeholder="Organisation Type" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="number" name="people" placeholder="Number of People" required><br>
+    <input type="text" name="requirements" placeholder="Daily Requirement" required><br>
+    <input type="text" name="address" placeholder="Address" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <button type="button" onclick="sendOTP('org')">Send OTP</button><br>
+    <input type="text" id="otpInput" placeholder="Enter OTP"><br>
+    <button type="submit">Verify & Register</button>
+  </form>
+  <script src="script.js"></script>
+</body>
+</html>
