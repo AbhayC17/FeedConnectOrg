@@ -2,24 +2,64 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>New Organisation Registration</title>
+  <title>Organisation Registration</title>
   <link rel="stylesheet" href="style.css">
+  <script src="otp.js"></script> <!-- Include the OTP script -->
 </head>
 <body>
   <h2>Organisation Registration</h2>
   <form id="orgForm">
-    <input type="text" name="personName" placeholder="Your Name" required><br>
+    <input type="text" id="name" name="personName" placeholder="Your Name" required><br>
     <input type="text" name="orgName" placeholder="Organisation Name" required><br>
     <input type="text" name="orgType" placeholder="Organisation Type" required><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="number" name="people" placeholder="Number of People" required><br>
-    <input type="text" name="requirements" placeholder="Daily Requirement" required><br>
+    <input type="email" id="email" name="email" placeholder="Email" required><br>
+    
+    <!-- OTP Buttons -->
+    <button type="button" onclick="sendOTP()">Send OTP</button><br><br>
+    <input type="text" id="otp" placeholder="Enter OTP"><br>
+    <button type="button" onclick="verifyOTP()">Verify OTP</button><br><br>
+
+    <input type="number" name="people" placeholder="People in Org" required><br>
+    <input type="text" name="requirements" placeholder="Avg Daily Requirements" required><br>
     <input type="text" name="address" placeholder="Address" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="button" onclick="sendOTP('org')">Send OTP</button><br>
-    <input type="text" id="otpInput" placeholder="Enter OTP"><br>
-    <button type="submit">Verify & Register</button>
+    <input type="password" name="password" placeholder="Set Password" required><br>
+
+    <button type="submit">Register</button>
   </form>
-  <script src="script.js"></script>
+
+  <script>
+    document.getElementById("orgForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Check OTP verification status
+      if (sessionStorage.getItem("otpVerified") !== "true") {
+        alert("Please verify OTP before submitting the form.");
+        return;
+      }
+
+      const formData = new FormData(this);
+      const json = {};
+      formData.forEach((v, k) => json[k] = v);
+
+      fetch("YOUR_WEB_APP_URL?type=org", {
+        method: "POST",
+        body: JSON.stringify(json),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+        .then(res => res.text())
+        .then(response => {
+          alert("Registration successful!");
+          console.log(response);
+          sessionStorage.removeItem("otpVerified");
+          this.reset();
+        })
+        .catch(err => {
+          alert("Error submitting form.");
+          console.error(err);
+        });
+    });
+  </script>
 </body>
 </html>
