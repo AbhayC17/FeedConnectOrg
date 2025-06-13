@@ -7,7 +7,7 @@ function submitForm(formId, type) {
     formData.forEach((v, k) => json[k] = v);
 
     // Verify OTP before final submission
-    fetch('YOUR_WEB_APP_URL', {
+    fetch('https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec', {
       method: 'POST',
       body: JSON.stringify({
         type: "verifyOTP",
@@ -17,7 +17,7 @@ function submitForm(formId, type) {
       headers: { "Content-Type": "application/json" }
     }).then(res => res.text()).then(result => {
       if (result === "Verified") {
-        fetch("YOUR_WEB_APP_URL?type=" + type, {
+        fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec?type=" + type, {
           method: 'POST',
           body: JSON.stringify(json)
         }).then(res => res.text()).then(alert);
