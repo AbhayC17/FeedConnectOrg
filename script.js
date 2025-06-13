@@ -1,5 +1,5 @@
 // Replace with your own Google Apps Script Web App URL
-const WEB_APP_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec';
 
 function sendOTP(userType) {
   const form = userType === 'donor' ? document.getElementById('donorForm') : document.getElementById('orgForm');
@@ -7,7 +7,7 @@ function sendOTP(userType) {
   const email = formData.get('email');
   const name = formData.get('name') || formData.get('personName');
 
-  fetch(WEB_APP_URL, {
+  fetch(https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec, {
     method: 'POST',
     body: JSON.stringify({ email, name, action: 'send_otp' })
   })
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data.otp = otpInput;
       data.action = 'register_donor';
 
-      fetch(WEB_APP_URL, {
+      fetch(https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec, {
         method: 'POST',
         body: JSON.stringify(data)
       })
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       data.otp = otpInput;
       data.action = 'register_org';
 
-      fetch(WEB_APP_URL, {
+      fetch(https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec, {
         method: 'POST',
         body: JSON.stringify(data)
       })
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = Object.fromEntries(new FormData(orgLogin));
       data.action = 'login_org';
 
-      fetch(WEB_APP_URL, {
+      fetch(https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec, {
         method: 'POST',
         body: JSON.stringify(data)
       })
@@ -112,7 +112,7 @@ function submitForm(formId, actionType) {
     const data = Object.fromEntries(new FormData(this));
     data.action = actionType;
 
-    fetch(WEB_APP_URL, {
+    fetch(https://script.google.com/macros/s/AKfycbx3pii2dHroK7A1WX9dOoNZrwvsfte_GIETCnBzgtOIjWVvMe_RxulHVHIPExyXA85e/exec, {
       method: 'POST',
       body: JSON.stringify(data)
     })
