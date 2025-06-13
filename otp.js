@@ -1,71 +1,29 @@
-// Replace with your actual deployed Web App URL from Google Apps Script
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec";
+function sendDonorOTP() {
+  const email = document.querySelector('#donorForm input[name="email"]').value;
+  const name = document.querySelector('#donorForm input[name="name"]').value;
 
-// ✅ Send OTP function for new donor or organisation
-function sendOTP() {
-  const email = document.getElementById("email").value;
-  const name = document.getElementById("name").value;
-
-  if (!email || !name) {
-    alert("Please fill in both name and email to receive OTP.");
-    return;
-  }
-
-  fetch(WEB_APP_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec", {
     method: "POST",
     body: JSON.stringify({
       type: "sendOTP",
       email: email,
       name: name
     }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => res.text())
-    .then(response => {
-      alert("OTP Sent to " + email);
-      console.log("Send OTP Response:", response);
-    })
-    .catch(err => {
-      alert("Error sending OTP.");
-      console.error("Send OTP Error:", err);
-    });
+    headers: { "Content-Type": "application/json" }
+  }).then(res => res.text()).then(alert);
 }
 
-// ✅ Verify OTP function
-function verifyOTP() {
-  const email = document.getElementById("email").value;
-  const otp = document.getElementById("otp").value;
+function sendOrgOTP() {
+  const email = document.querySelector('#orgForm input[name="email"]').value;
+  const name = document.querySelector('#orgForm input[name="personName"]').value;
 
-  if (!otp || !email) {
-    alert("Please enter both email and OTP.");
-    return;
-  }
-
-  fetch(WEB_APP_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec", {
     method: "POST",
     body: JSON.stringify({
-      type: "verifyOTP",
+      type: "sendOTP",
       email: email,
-      otp: otp
+      name: name
     }),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(res => res.text())
-    .then(response => {
-      if (response === "OTP Verified") {
-        alert("✅ OTP Verified Successfully!");
-        sessionStorage.setItem("otpVerified", "true");
-      } else {
-        alert("❌ Incorrect OTP. Please try again.");
-      }
-      console.log("Verify OTP Response:", response);
-    })
-    .catch(err => {
-      alert("Error verifying OTP.");
-      console.error("Verify OTP Error:", err);
-    });
+    headers: { "Content-Type": "application/json" }
+  }).then(res => res.text()).then(alert);
 }
