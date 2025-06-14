@@ -1,4 +1,14 @@
-function sendOTP(email, name) {
+function sendOTP(userType) {
+  let email, name;
+
+  if (userType === 'donor') {
+    email = document.getElementById('donorEmail').value;
+    name = document.getElementById('donorName').value;
+  } else if (userType === 'org') {
+    email = document.getElementById('orgEmail').value;
+    name = document.getElementById('orgPersonName').value;
+  }
+
   fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec", {
     method: "POST",
     body: JSON.stringify({
@@ -32,4 +42,5 @@ function verifyOTP(email, otp, callback) {
     }
   });
 }
+
 
