@@ -1,5 +1,5 @@
 function sendOTP(email, name) {
-  fetch("YOUR_WEB_APP_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec", {
     method: "POST",
     body: JSON.stringify({
       type: "sendOTP",
@@ -13,7 +13,7 @@ function sendOTP(email, name) {
 }
 
 function verifyOTP(email, otp, callback) {
-  fetch("YOUR_WEB_APP_URL", {
+  fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec", {
     method: "POST",
     body: JSON.stringify({
       type: "verifyOTP",
