@@ -2,18 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Organisation Login</title>
+  <title>Organisation Login - FeedConnect</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Organisation Login</h2>
-  <form id="orgLoginForm">
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
-    <button type="submit">Sign In</button>
-  </form>
+  <header><h1>Organisation Login</h1></header>
+  <section>
+    <form id="orgLoginForm">
+      <input type="email" name="email" placeholder="Organisation Email" required><br>
+      <input type="password" name="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+  </section>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("orgLoginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = this.email.value;
+      const password = this.password.value;
+
+      fetch("YOUR_WEB_APP_URL") // Replace with deployed Apps Script URL
+        .then(res => res.json())
+        .then(data => {
+          const match = data.orgs.find(o => o[3] === email && o[7] === password);
+          if (match) {
+            alert("Login successful!");
+            localStorage.setItem("orgName", match[1]);
+            window.location.href = "org-dashboard.html";
+          } else {
+            alert("Invalid credentials!");
+          }
+        });
+    });
+  </script>
 </body>
 </html>
+
 
