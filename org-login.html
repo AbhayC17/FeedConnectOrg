@@ -21,7 +21,7 @@
       const email = this.email.value;
       const password = this.password.value;
 
-      fetch("YOUR_WEB_APP_URL") // Replace with deployed Apps Script URL
+      fetch("https://script.google.com/macros/s/AKfycbxLBNeKJgaseTYlctme7jqoHtzueRpGjZTE1EvboQJryZif9JsTTJEM65S464HfZ-OT/exec") // Replace with deployed Apps Script URL
         .then(res => res.json())
         .then(data => {
           const match = data.orgs.find(o => o[3] === email && o[7] === password);
