@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Organisation Registration</title>
+  <title>New Organisation Registration</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,17 +12,17 @@
     <input type="text" name="orgName" placeholder="Organisation Name" required><br>
     <input type="text" name="orgType" placeholder="Organisation Type" required><br>
     <input type="email" name="email" placeholder="Email" required><br>
-    <input type="number" name="people" placeholder="People in Organisation" required><br>
+    <input type="number" name="people" placeholder="People in Org" required><br>
     <input type="text" name="requirements" placeholder="Avg Daily Requirements" required><br>
     <input type="text" name="address" placeholder="Address" required><br>
     <input type="password" name="password" placeholder="Set Password" required><br>
-    <input type="text" name="otp" placeholder="Enter OTP" required><br>
-    <button type="button" onclick="sendOrgOTP()">Send OTP</button>
-    <button type="submit">Register</button>
+    <input type="text" name="otp" placeholder="Enter OTP"><br>
+    <button type="button" onclick="sendOTP('org')">Send OTP</button>
+    <button type="submit">Verify & Register</button>
   </form>
-
-  <script src="script.js"></script>
   <script src="otp.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
 
