@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Organisation Dashboard</title>
+  <title>Organisation Dashboard - FeedConnect</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Available Donations</h2>
-  <div id="donationList">Loading...</div>
+  <header><h1>Welcome, <span id="orgName"></span></h1></header>
+  <section>
+    <h2>Available Food Donations</h2>
+    <ul id="donationList"></ul>
+  </section>
 
   <script>
-    fetch("YOUR_WEB_APP_URL?type=donation_list")
+    document.getElementById("orgName").innerText = localStorage.getItem("orgName");
+
+    fetch("YOUR_WEB_APP_URL") // Replace with deployed Apps Script URL
       .then(res => res.json())
       .then(data => {
         const list = document.getElementById("donationList");
-        list.innerHTML = data.map(d => `
-          <div style="margin: 10px; padding: 10px; background: #fff; color: #000">
-            <strong>${d.name}</strong><br>
-            Contact: ${d.contact}<br>
-            Food: ${d.foodType} - ${d.quantity}
-          </div>`).join('');
+        data.donations.forEach(donation => {
+          const li = document.createElement("li");
+          li.innerText = `${donation[0]} offers ${donation[2]} - ${donation[3]} kg. Contact: ${donation[1]}`;
+          list.appendChild(li);
+        });
       });
   </script>
 </body>
